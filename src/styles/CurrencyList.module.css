@@ -1,0 +1,91 @@
+.currencyList {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchInput {
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #2e2e2e;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    background: transparent;
+    color: #888;
+    font-size: 20px;
+    border-radius: 25px;
+    margin-bottom: 30px;
+    padding-left: 30px;
+    width: 50%;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tableBody {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.tableHead {
+    height: 50px;
+
+}
+
+.currencyRow {
+    border: 1px solid #2e2e2e;
+    background: #0a0a0a;
+}
+
+.currencyRow:last-child {
+    border-bottom: none;
+}
+
+.currencyRow:hover {
+    background-color: #1f1f1f;
+}
+
+.currencyRow td {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.currencyIcon {
+
+    margin-right: 10px;
+}
+
+.currencyName {
+    font-weight: bold;
+}
+
+.currencySymbol {
+    color: #888;
+}
+
+.positiveChange {
+    color: green;
+}
+
+.negativeChange {
+    color: red;
+}
+
+.pagination {
+    justify-content: center;
+    display: flex;
+    margin-top: 20px;
+}
+.pagination button {
+    font-size: 30px;
+    color: #fff;
+    background: #000;
+    border: none;
+    cursor: pointer;
+}

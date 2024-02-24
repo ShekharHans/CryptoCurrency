@@ -1,0 +1,102 @@
+all crypto details https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en
+
+
+
+coin list https://api.coingecko.com/api/v3/coins/list
+
+import React, { useState, useEffect } from 'react';
+import { fetchCurrencyData } from './api/Currency';
+
+import styles from '../styles/CurrencyList.module.css'
+import Currency from './interface/Currency';
+import Dashboard from './components/Dashboard';
+import { filterCurrencies, paginateCurrencies } from './utils/CurrencyUtils';
+import ChartComponent from './components/Chart';
+
+const CurrencyList: React.FC = () => {
+  const [currencies, setCurrencies] = useState<Currency[]>([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currenciesPerPage] = useState(10);
+  const [clickedCurrencyId, setClickedCurrencyId] = useState<string | null>(null);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await fetchCurrencyData(); // Use fetchCurrencyData function from api.ts
+        setCurrencies(data);
+        // console.log(data)
+      } catch (error) {
+        console.error('Error fetching currency data:', error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const filteredCurrencies = filterCurrencies(currencies, searchTerm);
+  const currentCurrencies = paginateCurrencies(filteredCurrencies, currentPage, currenciesPerPage);
+  const handleCurrencyClick = (currency: Currency) => {
+    setClickedCurrencyId(currency.id)
+    console.log(currency.id)
+  }
+  return (
+    <>
+      <div className={styles.currencyList}>
+        <input
+          type="text"
+          placeholder="Search currency..."
+          value={searchTerm}
+          onChange={e => setSearchTerm(e.target.value)}
+          className={styles.searchInput}
+        />
+        <table className={styles.table}>
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Symbol</th>
+              <th>Price (USD)</th>
+              <th>Change (24h)</th>
+              <th>Volume</th>
+              <th>Market Cap</th>
+            </tr>
+          </thead>
+          <tbody className={styles.tableBody}>
+            {/* Currency rows */}
+            {currentCurrencies.map(currency => (
+              <tr
+                key={currency.id}
+                className={styles.currencyRow}
+                onClick={() => handleCurrencyClick(currency)}
+              >
+                <td><img src={currency.image} alt={currency.name} className={styles.currencyIcon} /></td>
+                <td>{currency.name}</td>
+                <td>{currency.symbol}</td>
+                <td>${currency.current_price}</td>
+                <td className={currency.price_change_percentage_24h > 0 ? styles.positiveChange : styles.negativeChange}>
+                  {currency.price_change_percentage_24h}%
+                </td>
+                <td>${currency.total_volume}</td>
+                <td>${currency.market_cap}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        {/* Pagination */}
+        <div className={styles.pagination}>
+          <button onClick={() => currentPage > 1 && setCurrentPage(currentPage - 1)}>
+            {'<'}
+          </button>
+          <button onClick={() => currentPage < Math.ceil(filteredCurrencies.length / currenciesPerPage) && setCurrentPage(currentPage + 1)}>
+            {'>'}
+          </button>
+        </div>
+      </div>
+      {clickedCurrencyId && <Dashboard selectedCurrencyId={clickedCurrencyId} />}
+
+    </>
+  );
+};
+
+
+
+export default CurrencyList;

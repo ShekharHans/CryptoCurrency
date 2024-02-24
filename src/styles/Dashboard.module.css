@@ -1,0 +1,33 @@
+.container {
+    width: 100%;
+    height: 100%;
+}
+
+.coinName {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.coinDetails {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 48px;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    font-weight: 400;
+
+}
+
+.coinTitle {
+   
+}
+
+.coinValue {
+    color: #888;
+    font-size: 1rem;
+}
