@@ -1,4 +1,5 @@
-import Currency from '../interface/Currency';
+import Currency from "@/interface/Currency";
+
 
 export const filterCurrencies = (currencies: Currency[], searchTerm: string): Currency[] => {
     return currencies.filter(currency =>
@@ -7,7 +8,7 @@ export const filterCurrencies = (currencies: Currency[], searchTerm: string): Cu
     );
 };
 
-export const paginateCurrencies = (currencies: Currency[], currentPage: number, currenciesPerPage: number): Currency[] => {
+export  const paginateCurrencies = (currencies: Currency[], currentPage: number, currenciesPerPage: number): Currency[] => {
     const indexOfLastCurrency = currentPage * currenciesPerPage;
     const indexOfFirstCurrency = indexOfLastCurrency - currenciesPerPage;
     return currencies.slice(indexOfFirstCurrency, indexOfLastCurrency);

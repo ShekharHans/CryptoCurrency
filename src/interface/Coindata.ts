@@ -1,4 +1,4 @@
-export interface BitcoinData {
+export default interface BitcoinData {
     name: string;
     symbol: string;
     image: {

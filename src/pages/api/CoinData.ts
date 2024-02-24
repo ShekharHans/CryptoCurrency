@@ -1,5 +1,7 @@
 // In coinData.ts
-import { BitcoinData } from "../interface/Coindata";
+
+import BitcoinData from "@/interface/Coindata";
+
 
 export async function fetchBitcoinData(id:string): Promise<BitcoinData | null> {
    

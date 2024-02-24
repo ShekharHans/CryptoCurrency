@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import styles from "../../styles/Dashboard.module.css"
 import Image from 'next/image';
 import { fetchBitcoinData } from '../api/CoinData';
-import { BitcoinData } from '../interface/Coindata';
-import CoinProps from '../interface/CoinProps';
+import CoinProps from '@/interface/CoinProps';
+import BitcoinData from '@/interface/Coindata';
+
 
 
 

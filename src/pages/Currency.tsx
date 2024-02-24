@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { fetchCurrencyData } from './api/Currency';
 
 import styles from '../styles/CurrencyList.module.css';
-import Currency from './interface/Currency';
+
 import Dashboard from './components/Dashboard';
-import { filterCurrencies, paginateCurrencies } from './utils/CurrencyUtils';
+
 import ChartComponent from './components/Chart';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Image from 'next/image';
+import Currency from '@/interface/Currency';
+import { filterCurrencies, paginateCurrencies } from '@/utils/CurrencyUtils';
 
 const CurrencyList: React.FC = () => {
   const [currencies, setCurrencies] = useState<Currency[]>([]);

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { fetchData } from '../api/MarketPriceData';
 import styles from "../../styles/MarketPrice.module.css";
-import CoinProps from '../interface/CoinProps';
+import CoinProps from '@/interface/CoinProps';
+
 
 // Load ApexCharts dynamically to avoid server-side rendering issues
 const ReactApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
